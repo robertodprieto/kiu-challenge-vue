@@ -21,8 +21,11 @@
               </li>
             </ul>
           </div>
-          <p class="official-site">
+          <p v-if="show.officialSite" class="official-site">
             <button @click="goToSite(show.officialSite)">Official Site</button>
+          </p>
+          <p v-else class="official-site">
+            <span class="no-official-site">Official Site Not Available</span>
           </p>
         </div>
       </div>
@@ -180,6 +183,15 @@ a {
 
 .show-details {
   margin-top: 1rem;
+}
+
+.no-official-site {
+  display: inline-block;
+  background-color: #555;
+  width: 100%;
+  color: #fff;
+  padding: 8px;
+  font-size: 18px;
 }
 
 .genres-list {
