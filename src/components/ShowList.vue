@@ -154,11 +154,13 @@ export default {
 
 .name {
   margin-top: 0;
+  margin-bottom: 0.3rem;
 }
 
 .type {
   color: grey;
   font-size: 18px;
+  margin-top: 0.2rem;
 }
 
 img {
@@ -189,21 +191,21 @@ a {
 
 .genres-list {
   list-style-type: none;
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  font-size: 0.675rem;
 }
 .genres-list__title {
+  font-weight: 700;
   color: #555;
 }
 
-.genres-list {
-  overflow: hidden;
-  text-overflow: ellipsis;
+.genres-list li {
 }
 
 .official-site {
