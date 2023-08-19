@@ -67,11 +67,10 @@ export default {
       window.open(siteUrl, "_blank");
     },
     findUniqueGenres(showsData) {
-      let genres = [];
-      showsData.map((item) => {
-        genres = [...genres, ...item.genres];
-      });
-      return Array.from(new Set(genres)).sort();
+      const genres = [
+        ...new Set(showsData.flatMap((item) => item.genres)),
+      ].sort();
+      return genres;
     },
     mapResponse(showsData) {
       return showsData.map((item) => {
