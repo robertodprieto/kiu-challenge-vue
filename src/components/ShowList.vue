@@ -59,15 +59,9 @@ export default {
       this.$refs.filterDialog.$refs.dialog.showModal();
     },
     filterShows(selectedItems) {
-      let shows = [];
-      this.originalShows.forEach((item) => {
-        item.genres.forEach((genre) => {
-          if (selectedItems.includes(genre)) {
-            shows.push(item);
-          }
-        });
-      });
-      this.shows = [...shows];
+      this.shows = this.originalShows.filter((item) =>
+        item.genres.some((genre) => selectedItems.includes(genre))
+      );
     },
     goToSite(siteUrl) {
       window.open(siteUrl, "_blank");
