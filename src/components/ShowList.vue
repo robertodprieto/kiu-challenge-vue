@@ -7,7 +7,7 @@
       Reload Shows
     </button>
     <div class="container">
-      <div v-for="(show, index) in shows" :key="index">
+      <div v-for="(show, index) in mappedShows" :key="index">
         <div class="card">
           <img :src="show.image" alt="image" />
           <div class="show-details">
@@ -54,6 +54,20 @@ export default {
       TYPE_OF_FILTERS,
     };
   },
+  computed: {
+    mappedShows() {
+      return this.shows.map((item) => {
+        return {
+          image: item.image?.original,
+          name: item.name,
+          type: item.type,
+          network: item.network?.name,
+          officialSite: item.officialSite,
+          genres: item.genres,
+        };
+      });
+    },
+  },
   methods: {
     openFilterShowsDialog() {
       this.$refs.filterDialog.$refs.dialog.showModal();
@@ -72,18 +86,6 @@ export default {
       ].sort();
       return genres;
     },
-    mapResponse(showsData) {
-      return showsData.map((item) => {
-        return {
-          image: item.image?.original,
-          name: item.name,
-          type: item.type,
-          network: item.network?.name,
-          officialSite: item.officialSite,
-          genres: item.genres,
-        };
-      });
-    },
     orderListByVowelsAmount(items) {
       return items.sort(
         (item1, item2) =>
@@ -101,8 +103,7 @@ export default {
 
       this.availableGenres = this.findUniqueGenres(showsData);
 
-      const mappedResponse = this.mapResponse(showsData);
-      this.shows = this.orderListByVowelsAmount(mappedResponse);
+      this.shows = this.orderListByVowelsAmount(showsData);
       this.originalShows = [...this.shows];
     },
   },
@@ -203,9 +204,6 @@ a {
 .genres-list__title {
   font-weight: 700;
   color: #555;
-}
-
-.genres-list li {
 }
 
 .official-site {
